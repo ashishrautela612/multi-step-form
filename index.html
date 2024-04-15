@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Step Form</title>
+     
+    <link rel="stylesheet" href="./public/assets/styles/style.css">
+</head>
+
+<body>
+
+    <!-- <div class="w-full">
+        <div class="w-1/2 flex items-center justify-center px-12">123</div>
+    </div> -->
+   <div class="flex items-center justify-center w-full flex-col py-4 mainContainer">
+    <form class="w-1/2 bg-white px-12 py-8 rounded" id="myForm">
+        <!-- first page -->
+        <section id="1" class="stepContainer activeContainer" step="1">
+            <h1 class="text-left text-3xl font-bold mb-4">Register</h1>
+            <div class="form-group my-8 flex flex-col inline-block">
+                <label for="firstName" class="">First Name</label>
+                <input type="text" id="firstName" name="firstName" class="w-full border-b-2 border-black outline-none py-2" minlength="2" pattern="^[a-zA-Z]+$" required disableNonAlphabetic>
+                <span class="error text-red-700 py-2"></span>
+            </div>
+
+            <div class="form-group my-4 flex flex-col inline-block">
+                <label for="lastName" class="">Last Name</label>
+                <input type="text" id="lastName" name="lastName" class="w-full border-b-2 border-black outline-none py-2" pattern="^[a-zA-Z]+$" required>
+                <span class="error text-red-700 py-2"></span>
+            </div>
+  
+            <div class="form-group my-4 flex flex-col inline-block">
+                <label for="userName" class="">User Name</label>
+                <input type="text" id="userName" name="userName" class="w-full border-b-2 border-black outline-none py-2" required pattern="^[a-zA-Z0-9]+$" minlength="4">
+                <span class="error text-red-700 py-2"></span>
+            </div>
+
+            <div class=" flex justify-end">
+                <!-- <button value="Next" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full next">Next</button> -->
+                <input type="button" value="Next" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full next">
+            </div>
+        </section>
+
+
+        <!-- second page -->
+        <section id="2" class="stepContainer" step="2">
+            <h1 class="text-left text-3xl font-bold mb-2">Register</h1>
+
+            <div class="form-group my-8 flex flex-col inline-block">
+                <label for="email" class="">Email</label>
+                <input type="email" id="email" name="email" class="w-full border-b-2 border-black outline-none py-2" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required>
+                <span class="error text-red-700 py-2"></span>
+            </div>
+
+            <div class="form-group my-4 flex flex-col inline-block">
+                <label for="password" class="">Password</label>
+                <input type="password" id="password" name="password" class="w-full border-b-2 border-black outline-none py-2" required minlength="8" customMaxlength="16" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])">
+                <span class="error text-red-700 py-2"></span>
+            </div>
+    
+            <div class="form-group my-4 flex flex-col inline-block">
+                <label for="confirmPassword" class="">Confirm Password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" class="w-full border-b-2 border-black outline-none py-2" match="password" required>
+                <span class="error text-red-700 py-2"></span>
+            </div>
+
+            <div class=" flex justify-between">
+                <!-- <button value="Next" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full prev">Prev</button> -->
+                <input type="button" value="Prev" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full prev">
+
+                <input type="button" value="Next" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full next">
+                
+
+                <!-- <button value="Next" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full next">Next</button> -->
+
+            </div>
+        </section>
+
+
+        <!-- third page -->
+        <section id="3" class="stepContainer" step="3">
+            <h1 class="text-left text-3xl font-bold">Register</h1>
+
+            <div class="form-group my-8 flex flex-col inline-block mb-2">
+                <label for="phone" class="">Phone Number</label>
+                <input type="text" id="phone" name="phone" class="w-full border-b-2 border-black outline-none py-2" pattern="^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$" maxlength="10" minlength="10" required>
+                <span class="error text-red-700 py-2"></span>
+            </div>
+
+            <div class="form-group my-4 flex flex-col inline-block">
+                <label for="address" class="">Address</label>
+                <input type="text" id="address" name="address" class="w-full border-b-2 border-black outline-none py-2" required>
+                <span class="error text-red-700 py-2"></span>
+            </div>
+            <div class=" flex justify-between">
+                <!-- <button value="Next" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full prev">Prev</button> -->
+                <input type="button" value="Prev" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full prev">
+
+                <input type="button" value="Save" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full save">
+                
+
+                <!-- <button value="Next" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full next">Next</button> -->
+
+            </div>
+        </section>
+
+    </form>
+</div>
+    <!-- <script src="./script.js"></script> -->
+    <script src="./test.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.mainContainer{
+    /* background-image: linear-gradient(
+        rgba(0,0,0,0.8),
+        rgba(0,0,0,0.8)
+    ),url(../images/20943587.jpg);
+    background-size: contain;
+     background-position: center;
+    background-repeat: no-repeat; */
+    background-color: #a6d9df;
+    height: 100vh;
+    z-index: -1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.singleField{
+    /* border: 2px solid black !important; */
+    padding: 0.5rem 0;
+}
+.heading{
+    margin-bottom: 2rem !important;
+}
+label,p{
+    font-size: 20px;
+    font-weight: 600;
+}

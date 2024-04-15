@@ -1,0 +1,68 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+.mainContainer{
+    background-image: linear-gradient(
+        rgba(0,0,0,0.8),
+        rgba(0,0,0,0.8)
+    ),url(../images/flat-lay-clean-office-desk.jpg);
+    background-size: cover;
+    height: 100vh;
+    z-index: -1;
+}
+.stepContainer{
+display: none;
+}
+
+.stepContainer.activeContainer{
+    display: block;
+}
+
+input[type="button"]{
+    cursor: pointer;
+}
+
+form,input{
+    /* filter: blur(6px); */
+    background-color: #a6d9df !important;
+}
+input[type="button"]{
+    background-color: black !important;
+}
+
+
+.shake-animation {
+    animation: shake 0.5s ease-in-out;
+  }
+  
+  @keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+  }
+
+
+.fadeContainer{
+    animation: fade 0.5s linear;
+    transform: scaleY(0);
+    transform-origin: center;
+    animation-fill-mode: forwards;
+}  
+
+@keyframes fade{
+    0%{
+        transform: scaleY(0);
+    }
+    50%{
+        transform: scaleY(0.5);
+    }
+    100%{
+        transform: scaleY(1);
+    }
+}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Data</title>
+    <link rel="stylesheet" href="./public/assets/styles/display.css" />
+  </head>
+  <body>
+    <div class="mainContainer">
+      <div class="userInfo bg-white py-8 rounded w-1/3">
+        <div class="heading text-3xl font-bold inline px-8 rounded py-5">
+          <h1 class="inline">Welcome</h1>
+          <h1 class="inline" id="headingName">Ashish</h1>
+        </div>
+        <div class="userDetails flex items-start px-8 justify-between flex-col">
+          <div
+            class="singleField flex items-center justify-between border-black-700 gap-4 mt-4"
+          >
+            <label for="fName">First Name:</label>
+            <p id="fName" class="inline"></p>
+          </div>
+          <div class="singleField">
+            <label for="lName">Last Name:</label>
+            <p id="lName" class="inline"></p>
+          </div>
+          <div class="singleField">
+            <label for="uName">User Name:</label>
+            <p id="uName" class="inline">Ashish</p>
+          </div>
+          <div class="singleField">
+            <label for="email">Email:</label>
+            <p id="email" class="inline"></p>
+          </div>
+          <div class="singleField">
+            <label for="password">Password:</label>
+            <p id="password" class="inline"></p>
+          </div>
+          <div class="singleField">
+            <label for="phone">Phone:</label>
+            <p id="phone" class="inline"></p>
+          </div>
+
+          <div class="singleField">
+            <label for="address">Address:</label>
+            <p id="address" class="inline"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const formData = JSON.parse(localStorage.getItem("stepFormData"));
+        console.log(formData);
+
+        const password = formData["password"];
+        const maskedPassword = (password) => {
+          const len = password.length;
+          const maskedChars = "*".repeat(len - 3);
+          const visibleChars = password.slice(-3);
+          return maskedChars + visibleChars;
+        };
+        const masked = maskedPassword(password);
+
+        document.getElementById("headingName").innerText = innerText =
+          formData["firstName"];
+        document.getElementById("fName").innerText = formData["firstName"];
+        document.getElementById("lName").innerText = formData["lastName"];
+        document.getElementById("uName").innerText = formData["userName"];
+        document.getElementById("email").innerText = formData["email"];
+        document.getElementById("password").innerText = masked;
+        document.getElementById("phone").innerText = formData["phone"];
+        document.getElementById("address").innerText = formData["address"];
+      });
+    </script>
+  </body>
+</html>
