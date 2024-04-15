@@ -20,11 +20,15 @@ const stepform = formElement => {
         //     errorMessage: () => "Only alphabetic characters are allowed",
         // },
 
+
+        //check if a field is required
         {
             attribute: "required",
             isValid: input => input.value.trim() !== "",
             errorMessage: (input, label) => `**${label.textContent} is required`,
         },
+
+        //validation based on pattern
         {
             attribute: "pattern",
             isValid: input => {
