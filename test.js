@@ -1,26 +1,13 @@
-const stepform = formElement => {
+const stepform = formElement => { 
+    let disableArray=[];
     const form = document.querySelector(formElement);
     form.setAttribute('noValidate', true);
 
     const formSections = Array.from(form.querySelectorAll(".stepContainer"));
+    // console.log(formSections);
     let formData={};
 
     const validationOptions = [
-
-        // {
-        //     attribute: "disableNonAlphabetic",
-        //     isValid: input => {
-        //         const keyCode = event.keyCode || event.which;
-        //         if (keyCode === 8 || (keyCode >= 65 && keyCode <= 90) || (keyCode >= 97 && keyCode <= 122)) {
-        //             return true;
-        //         } else {
-        //             return false;
-        //         }
-        //     },
-        //     errorMessage: () => "Only alphabetic characters are allowed",
-        // },
-
-
         //check if a field is required
         {
             attribute: "required",
@@ -78,14 +65,19 @@ const stepform = formElement => {
 
     const validateSingleField = (input, label, error) => {
         let isError = false;
+        const nextBtn=input.parentElement.parentElement.querySelector(".next");
         for (const option of validationOptions) {
             if (input.hasAttribute(option.attribute) && !(option.isValid(input, label))) {
-                console.log(input.value);
                 error.innerText = option.errorMessage(input, label);
                 input.classList.add("border-red-700");
                 input.classList.add("shake-animation");
                 input.classList.remove("border-green-700");
+                if(nextBtn){
+                nextBtn.classList.add("notAllowed");
+                nextBtn.disabled = true;
+                }
                 isError = true;
+                disableArray.push(false);
                 break;
             }
         }
@@ -94,16 +86,36 @@ const stepform = formElement => {
             input.classList.add("border-green-700");
             input.classList.remove("border-red-700");
             input.classList.remove("shake-animation");
+            if(nextBtn){
+            nextBtn.classList.remove("notAllowed");
+            nextBtn.disabled = false;
+
+            disableArray.push(true);
+            }
         }
         return !isError;
     };
 
+   
+
     const singleFormGroupToValidate = formGroup => {
+
+        const isDisables=Array.from(formGroup.parentElement.querySelectorAll('span'));
+        const nextBtn=formGroup.parentElement.querySelector('.next');
+        const saveBtn=formGroup.parentElement.querySelector('.next');
         const label = formGroup.querySelector("label");
         const input = formGroup.querySelector("input");
         const error = formGroup.querySelector(".error");
-        input.addEventListener("keyup", () => {
+        
+        input.addEventListener("input", () => {
             validateSingleField(input, label, error);
+            isDisables.some((errorr)=>{
+                if(!errorr.innerText==""){
+                nextBtn.disabled=true;
+                nextBtn.classList.add("notAllowed");
+                }
+            })
+
         });
     };
 
@@ -140,7 +152,7 @@ const stepform = formElement => {
                     const nextStepNumber = parseInt(currentSection.getAttribute('step')) + 1;
                     const nextStep = form.querySelector(`.stepContainer[step="${nextStepNumber}"]`);
                     nextStep.classList.add('activeContainer');
-                    nextStep.classList.add("fadeContainer")
+                    nextStep.classList.add("fadeContainer");
                     const sectiondata=Array.from(currentSection.querySelectorAll('input'));
                     // console.log(sectiondata);
                     // const formData = {};
@@ -149,12 +161,9 @@ const stepform = formElement => {
                             formData[field.name] = field.value;
                         }
                     });
-                    localStorage.setItem("stepFormData", JSON.stringify(formData));
-
-                    
+                    localStorage.setItem("stepFormData", JSON.stringify(formData));   
                 } else {
-                    // const errorMessage = section.querySelector(".error");
-                    // errorMessage.textContent = "Please fill in all required fields and correct any errors.";
+                    nextBtn.classList.add("notAllowed")
                 }
 
             });
@@ -175,20 +184,19 @@ const stepform = formElement => {
         if (saveBtn) {
             const currentSection = section;
             const myform = document.getElementById("myForm");
+            const loader=document.querySelector(".loader");
             saveBtn.addEventListener('click', (e) => {
                 if (isSectionValid(currentSection)) {
-                    // console.log(myform)    
-                    const allFields = Array.from(myform.querySelectorAll('input'));
-                    // const formData = {};
-                    allFields.forEach(field => {
-                        if (field.hasAttribute('name')) {
-                            formData[field.name] = field.value;
-                        }
-                    });
-                    localStorage.setItem("stepFormData", JSON.stringify(formData));
-                    myform.submit();
-                    myform.reset();
-                    window.location.href = "display.html";         
+                const allFields = Array.from(myform.querySelectorAll('input'));
+                allFields.forEach(field => {
+                    if (field.hasAttribute('name')) {
+                        formData[field.name] = field.value;
+                    }
+                });
+                localStorage.setItem("stepFormData", JSON.stringify(formData));
+                myform.submit();
+                myform.reset();
+                window.location.href = "display.html"; 
                 }
 
             });
@@ -197,3 +205,28 @@ const stepform = formElement => {
 };
 
 stepform('#myForm');
+
+function disableNameFeild(e){
+    const key = e.key.toLowerCase();
+    if (!(key >= 'a' && key <= 'z') && key !== 'backspace') {
+        e.preventDefault();
+    }
+}
+
+function disableOnlyNumberFeild(e){
+    if (!(e.key >= '0' && e.key <= '9') && e.key !== 'Backspace') {
+        e.preventDefault();
+      } 
+}
+
+function showPass(e){
+    const password=document.getElementById("password");
+    password.setAttribute("type","text");
+}
+
+function hidePass(e){
+    const password=document.getElementById("password");
+    password.setAttribute("type","password");
+}
+
+ 

@@ -42,6 +42,9 @@ a:hover{
     animation: shake 0.5s ease-in-out;
 }
 
+.notAllowed{
+    cursor: not-allowed !important;
+}
  
   
   @keyframes shake {
@@ -71,3 +74,11 @@ a:hover{
         transform: scaleY(1);
     }
 }
+span{
+    height: 14px;
+    font-size: 12px;
+}
+.loader{
+    display: none;
+}
+ 
